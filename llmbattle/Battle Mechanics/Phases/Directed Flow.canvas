@@ -1,0 +1,26 @@
+{
+	"nodes":[
+		{"id":"62c93e0223855333","type":"file","file":"Battle Mechanics/Phases/Calculate/Calculate.md","x":-240,"y":-100,"width":400,"height":400},
+		{"id":"44a1a11f088c7b3a","type":"file","file":"Battle Mechanics/Phases/Decision/Decision.md","x":-1080,"y":-100,"width":400,"height":400},
+		{"id":"c33adf18143c0aea","type":"file","file":"Battle Mechanics/Phases/Aftermath/Module.md","x":600,"y":-100,"width":400,"height":400},
+		{"id":"54e194cd6ad20570","x":-240,"y":-760,"width":400,"height":400,"type":"file","file":"Servers/Local Server.md"},
+		{"id":"9b09e6d70ad54d27","x":-240,"y":-1400,"width":400,"height":400,"type":"file","file":"Servers/Authority Server.md"},
+		{"id":"740c3bc30340608a","x":195,"y":400,"width":405,"height":50,"type":"text","text":"# If hash doesn't align"},
+		{"id":"a294818f5b03a05f","x":195,"y":450,"width":405,"height":50,"type":"text","text":"# If hash aligns"},
+		{"id":"a6ae0a2b548bf543","x":195,"y":-280,"width":392,"height":50,"type":"text","text":"# If <= 1 Human Player"},
+		{"id":"018d7a6f6869373e","x":-240,"y":-920,"width":400,"height":50,"type":"text","text":"# If >1 Human Player"}
+	],
+	"edges":[
+		{"id":"df784d5b03738ffc","fromNode":"44a1a11f088c7b3a","fromSide":"right","toNode":"62c93e0223855333","toSide":"left"},
+		{"id":"900d571a8618e397","fromNode":"62c93e0223855333","fromSide":"top","toNode":"54e194cd6ad20570","toSide":"bottom"},
+		{"id":"387dee3634ab15d6","fromNode":"54e194cd6ad20570","fromSide":"top","toNode":"018d7a6f6869373e","toSide":"bottom"},
+		{"id":"42749fba97c0afe3","fromNode":"018d7a6f6869373e","fromSide":"top","toNode":"9b09e6d70ad54d27","toSide":"bottom"},
+		{"id":"492342b6d579d700","fromNode":"9b09e6d70ad54d27","fromSide":"right","toNode":"c33adf18143c0aea","toSide":"top"},
+		{"id":"51f7990a597e27ab","fromNode":"c33adf18143c0aea","fromSide":"bottom","toNode":"740c3bc30340608a","toSide":"right"},
+		{"id":"0e045b497895c8ac","fromNode":"740c3bc30340608a","fromSide":"left","toNode":"62c93e0223855333","toSide":"bottom"},
+		{"id":"6525c90ebd0eac9c","fromNode":"c33adf18143c0aea","fromSide":"bottom","toNode":"a294818f5b03a05f","toSide":"right"},
+		{"id":"a857e35a21c90c16","fromNode":"a294818f5b03a05f","fromSide":"left","toNode":"44a1a11f088c7b3a","toSide":"bottom"},
+		{"id":"4308bbe1361f8113","fromNode":"54e194cd6ad20570","fromSide":"right","toNode":"a6ae0a2b548bf543","toSide":"top"},
+		{"id":"7184ce2797247c5d","fromNode":"a6ae0a2b548bf543","fromSide":"bottom","toNode":"c33adf18143c0aea","toSide":"left"}
+	]
+}
