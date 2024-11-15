@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "llmbattle/Battle Mechanics/Phases/Decision/Action.md",
+                "file": "llmbattle/Visualization/Interaction Flow.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Action"
+              "title": "Interaction Flow"
             }
           }
         ]
@@ -162,8 +162,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "aaccfda49badb81b",
+  "active": "4dac79dee45dc35c",
   "lastOpenFiles": [
+    "llmbattle/Battle Mechanics/Phases/Decision/Action.md",
+    "llmbattle/Visualization/Interaction Flow.md",
     "llmbattle/Visualization/project.godot",
     "llmbattle/Visualization/icon.svg.import",
     "llmbattle/Visualization/icon.svg",
@@ -176,14 +178,12 @@
     "llmbattle/Visualization/Scripts",
     "llmbattle/Visualization/Scenes/Creature.tscn",
     "llmbattle/Visualization/Scenes",
-    "llmbattle/Visualization/Resources/creature_data.gd",
     "llmbattle/Visualization/addons/godot-git-plugin/THIRDPARTY.md",
     "llmbattle/ai-battlez/addons/godot-git-plugin/THIRDPARTY.md",
     "llmbattle/ai-battlez/icon.svg",
     "llmbattle/ai-battlez/green.png",
     "llmbattle/Battle Mechanics/Phases/Decision/Decision.md",
     "llmbattle/Battle Mechanics/Phases/Decision/Concede.md",
-    "llmbattle/Battle Mechanics/Phases/Decision/Action.md",
     "llmbattle/Battle Mechanics/Phases/Calculate/Calculate.md",
     "llmbattle/Battle Mechanics/Attributes.md",
     "llmbattle/Battle Mechanics/Statuses.md",
