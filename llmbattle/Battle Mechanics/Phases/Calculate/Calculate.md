@@ -16,3 +16,16 @@ After validation, the server sends the other player the new state to run the [[D
 During this time, neither players have any options besides reviewing their current fighters and abilities. This can be considered a "Locked" phase for both players.
 
 It's essential that this phase must never enter "Hard-Locks", causing any, or both players to be completely locked out of the game. 
+
+---------------------------
+
+
+**Multi-Player POC-Implementation (simplified process flow):**
+Clients get [[Decision]] , immediately passes it to other client (via server).
+Both clients update state, calculate hash and send it to server.
+Server compares hashes, approves the new state (State-Approval) and initiates next gameplay turn, else (State-Disapproval) which could be a simple exit at this point in time. 
+
+Further development: 
+- last approved state is stored by the clients with the corresponding hash
+- in case of a State-Disapproval the server informs the clients to get the last valid state and calculate the effects of the decision again (re-enter standard process). If it fails again, exit. 
+
