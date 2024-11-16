@@ -1,0 +1,48 @@
+{
+  "creatures": [
+    {
+      "id": 1,
+      "name": "Fire Dragon",
+      "health": 80,
+      "max_health": 100,
+      "attack": 20,
+      "defense": 10,
+      "position": {"x": 100, "y": 200},
+      "status_effects": ["burning"],
+      "team": "player"
+    },
+    {
+      "id": 2,
+      "name": "Water Serpent",
+      "health": 100,
+      "max_health": 100,
+      "attack": 15,
+      "defense": 12,
+      "position": {"x": 300, "y": 200},
+      "status_effects": [],
+      "team": "enemy"
+    },
+    {
+      "id": 3,
+      "name": "Earth Golem",
+      "health": 120,
+      "max_health": 120,
+      "attack": 10,
+      "defense": 20,
+      "position": {"x": 100, "y": 400},
+      "status_effects": ["shielded"],
+      "team": "player"
+    },
+    {
+      "id": 4,
+      "name": "Wind Spirit",
+      "health": 70,
+      "max_health": 70,
+      "attack": 25,
+      "defense": 8,
+      "position": {"x": 300, "y": 400},
+      "status_effects": ["invisible"],
+      "team": "enemy"
+    }
+  ]
+}
