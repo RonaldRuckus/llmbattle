@@ -1,8 +1,8 @@
 // src/handlers.rs
-use actix_web::{web, HttpResponse, Responder};
+use actix_web::{web, HttpRequest, HttpResponse, Responder};
 use rusqlite::Connection;
 use std::sync::Mutex;
-use crate::{db, models::{game::{NameRequest, PollRequest}, room::{Created, Joined}}};
+use crate::{db, models::{creature::CreateRequest, game::{NameRequest, PollRequest}, room::{Created, Joined}}};
 
 // Handle the "/create" endpoint
 pub async fn handle_create(data: web::Data<Mutex<Connection>>, payload: web::Json<NameRequest>) -> impl Responder {
@@ -54,4 +54,37 @@ pub async fn handle_poll(
         Ok(false) => HttpResponse::NoContent().finish(),
         Err(_) => HttpResponse::InternalServerError().body("Failed to poll game state."),
     }
+}
+
+pub async fn handle_check_creatures(
+    request: HttpRequest,
+    path: web::Path<i64>,
+    data: web::Data<Mutex<Connection>>,
+) -> impl Responder {
+    let user_id = request.headers().get("Authorization").unwrap().to_str().unwrap().parse::<i64>().unwrap();
+    let game_id = path.into_inner();
+    let conn = data.lock().unwrap();
+
+    let creatures = db::get_creatures(&conn, game_id, user_id).unwrap();
+
+    HttpResponse::Ok().json(creatures)
+}
+
+pub async fn handle_create_creature(
+    request: HttpRequest,
+    path: web::Path<i64>,
+    data: web::Data<Mutex<Connection>>,
+    payload: web::Json<CreateRequest>
+) -> impl Responder {
+
+    // Get the user id from the request under `Authorization`
+    let user_id = request.headers().get("Authorization").unwrap().to_str().unwrap().parse::<i64>().unwrap();
+    let game_id = path.into_inner();
+    let conn = data.lock().unwrap();
+    let creature = payload.into_inner();
+    let creature = creature.transform().await;
+
+    let _ = db::create_creature(&conn, game_id, user_id, &creature);
+
+    HttpResponse::Ok().body("OK")
 }

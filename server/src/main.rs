@@ -1,12 +1,13 @@
 use actix_web::{web, App, HttpServer};
 use chrono::Local;
 use dotenv::dotenv;
-use handlers::{handle_create, handle_join, handle_poll};
+use handlers::{handle_check_creatures, handle_create, handle_create_creature, handle_join, handle_poll};
 use log::LevelFilter;
 use std::{env, fs, path::Path, sync::Mutex};
 use rusqlite::Connection;
 pub mod models;
 pub mod db;
+pub mod embedding;
 mod handlers;
 use db::initialize_database;
 
@@ -56,6 +57,8 @@ async fn main() -> std::io::Result<()> {
             .route("/create", web::post().to(handle_create))
             .route("/{game_id}/join", web::post().to(handle_join))
             .route("/{game_id}/poll", web::get().to(handle_poll))
+            .route("/{game_id}/creatures", web::get().to(handle_check_creatures))
+            .route("/{game_id}/creatures/create", web::post().to(handle_create_creature))
     })
     .bind(("127.0.0.1", 8080))?
     .run()

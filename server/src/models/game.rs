@@ -1,12 +1,14 @@
 use serde::{Deserialize, Serialize};
 
+use super::creature::Creature;
+
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct GameState {
     pub game_id: String,
     pub phase: GamePhase,
     pub current_turn: Option<String>,
     pub players: Vec<String>,
-    pub entities: Vec<Entity>,
+    pub entities: Vec<Creature>,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -15,14 +17,6 @@ pub enum GamePhase {
     Creation,
     Battle,
     Finish,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct Entity {
-    pub id: String,
-    pub owner: String,
-    pub name: String,
-    pub health: u32,
 }
 
 #[derive(Deserialize)]

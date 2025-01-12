@@ -1,0 +1,34 @@
+{
+    "Ability": [
+        {
+            "name": "Basic Attack",
+            "description": "A basic attack that does physical damage",
+            "base_value": 10,
+            "modifier": 0.1
+        },
+        {
+            "name": "Elemental Attack",
+            "description": "An attack that does elemental damage. Specifically mentions one or more element(s)",
+            "base_value": 8,
+            "modifier": 0.5
+        },
+        {
+            "name": "Augment",
+            "description": "Provides a beneficial modifier to the attributes and elements of yourself",
+            "base_value": 5,
+            "modifier": 0.0
+        },
+        {
+            "name": "Reduce",
+            "description": "Provides a detrimental modifier to the attributes and elements of an enemy",
+            "base_value": 5,
+            "modifier": 0.0
+        }
+    ],
+    "Element": [
+        "Fire",
+        "Water",
+        "Earth",
+        "Air"
+    ]
+}

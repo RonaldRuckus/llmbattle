@@ -2,6 +2,8 @@ use rusqlite::{Connection, Result};
 use thiserror::Error;
 use std::fs;
 
+use crate::models::creature::Creature;
+
 
 #[derive(Error, Debug)]
 pub enum DbError {
@@ -27,7 +29,7 @@ pub fn create_game(conn: &Connection, name: &str) -> Result<(i64, i64)> {
         &["setup"],
     )?;
     let game_id = conn.last_insert_rowid();
-
+    
     conn.execute(
         "INSERT INTO Player (game_id, name) VALUES (?1, ?2)",
         // Avoid converting `game_id` to `String`
@@ -72,6 +74,44 @@ pub fn poll_game_state(conn: &Connection, game_id: i64, timestamp: i64) -> Resul
     Ok(exists)
 }
 
+/// This is temporary
+pub fn create_creature(conn: &Connection, game_id: i64, user_id: i64, creature: &Creature) -> Result<i64> {
+    // Fetch the current creatures JSON string for the player
+    let current_creatures: String = conn.query_row(
+        "SELECT creatures FROM Player WHERE game_id = ?1 AND id = ?2",
+        &[&game_id, &user_id],
+        |row| row.get(0),
+    )?;
+
+    // Deserialize the current creatures into a Vec<Creature>
+    let mut creatures: Vec<Creature> = serde_json::from_str(&current_creatures).unwrap_or_else(|_| vec![]);
+
+    // Add the new creature
+    creatures.push(creature.clone());
+
+    // Serialize the updated creatures back into a JSON string
+    let updated_creatures = serde_json::to_string(&creatures).unwrap();
+
+    // Update the Player table with the new creatures JSON
+    conn.execute(
+        "UPDATE Player SET creatures = ?1 WHERE game_id = ?2 AND id = ?3",
+        &[&updated_creatures, &game_id as &dyn rusqlite::ToSql, &user_id as &dyn rusqlite::ToSql],
+    )?;
+
+    let creature_id = conn.last_insert_rowid();
+
+    Ok(creature_id)
+}
+
+pub fn get_creatures(conn: &Connection, game_id: i64, user_id: i64) -> Result<Vec<Creature>> {
+    let creatures: String = conn.query_row(
+        "SELECT creatures FROM Player WHERE game_id = ?1 AND id = ?2",
+        &[&game_id, &user_id],
+        |row| row.get(0),
+    )?;
+    let creatures: Vec<Creature> = serde_json::from_str(&creatures).unwrap_or_else(|_| vec![]);
+    Ok(creatures)
+}
 
 #[cfg(test)]
 mod tests {

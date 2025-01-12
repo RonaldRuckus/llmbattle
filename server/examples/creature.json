@@ -1,0 +1,31 @@
+{
+    "name": "Fire Elemental",
+    "description": "A fire elemental, brimming with volatile energy.",
+    "image": "A fire elemental",
+    "elements": ["Fire"],
+    "abilities": [
+        {
+            "name": "Ember Strike",
+            "description": "A swift attack that scorches the opponent, dealing moderate fire damage with a chance to inflict 'Burn,' causing damage over time."
+        },
+        {
+            "name": "Flame Wall",
+            "description": "Summons a barrier of fire that reduces incoming physical damage for 2 turns and burns enemies that use direct contact moves."
+        },
+        {
+            "name": "Blazing Charge",
+            "description": "The Fire Elemental charges at the opponent with explosive force, dealing significant fire damage but taking minor recoil damage."
+        },
+        {
+            "name": "Ignition Surge",
+            "description": "The Fire Elemental flares up its energy, boosting its fire attacks' power for 3 turns and removing any debuffs on itself."
+        }
+    ],
+    "attributes": {
+        "strength": 5,
+        "defense": 5,
+        "perception": 5,
+        "intelligence": 5,
+        "wisdom": 5
+    }
+}
