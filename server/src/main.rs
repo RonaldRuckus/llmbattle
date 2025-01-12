@@ -3,19 +3,20 @@ use chrono::Local;
 use dotenv::dotenv;
 use handlers::{handle_create, handle_join, handle_poll};
 use log::LevelFilter;
-use std::{env, fs, sync::Mutex};
+use std::{env, fs, path::Path, sync::Mutex};
 use rusqlite::Connection;
-mod models;
+pub mod models;
 pub mod db;
 mod handlers;
 use db::initialize_database;
 
-const LOG_DIR: &str = "logs";
-
 fn configure_logging() -> Result<(), Box<dyn std::error::Error>> {
-    fs::create_dir_all(LOG_DIR)?; // Ensure the logs directory exists
+    let log_dir = Path::new("./logs");
+    if !log_dir.exists() {
+        fs::create_dir_all(log_dir)?;
+    }
 
-    let log_file_path = format!("{}/{}.log", LOG_DIR, Local::now().format("%Y-%m-%d_%H-%M-%S"));
+    let log_file_path = format!("{}/{}.log", log_dir.display(), Local::now().format("%Y-%m-%d_%H-%M-%S"));
 
     fern::Dispatch::new()
         .format(|out, message, record| {
@@ -53,8 +54,8 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .app_data(data.clone())
             .route("/create", web::post().to(handle_create))
-            .route("/join/{game_id}", web::post().to(handle_join))
-            .route("/poll", web::get().to(handle_poll))
+            .route("/{game_id}/join", web::post().to(handle_join))
+            .route("/{game_id}/poll", web::get().to(handle_poll))
     })
     .bind(("127.0.0.1", 8080))?
     .run()

@@ -24,13 +24,13 @@ pub struct Entity {
     pub name: String,
     pub health: u32,
 }
-#[derive(Serialize)]
-pub struct RoomCreated {
-    pub game_id: String,
-    pub token: String,
+
+#[derive(Deserialize)]
+pub struct PollRequest {
+    pub timestamp: i64,
 }
 
-#[derive(Serialize)]
-pub struct RoomJoined {
-    pub token: String,
+#[derive(Deserialize)]
+pub struct NameRequest {
+    pub name: String,
 }

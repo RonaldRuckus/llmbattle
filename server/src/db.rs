@@ -2,6 +2,7 @@ use rusqlite::{Connection, Result};
 use thiserror::Error;
 use std::fs;
 
+
 #[derive(Error, Debug)]
 pub enum DbError {
     #[error("Database error: {0}")]
