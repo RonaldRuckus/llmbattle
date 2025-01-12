@@ -1,8 +1,10 @@
 # Currently available endpoints
 
-- /create
-- /{game_id}/join/
-- /{game_id}/poll/
+- POST /create
+- POST /{game_id}/join/
+- GET /{game_id}/poll/
+- GET /{game_id}/creatures
+- POST /{game_id}/creatures/create
 
 ## POST/create
 ```json
@@ -14,8 +16,8 @@
 ### Response
 ```json
 {
-    "game_id": 0.0, // ID of the game
-    "token": 0.0 // ID of the player
+    "game_id": 0.0,
+    "token": 0.0
 }
 ```
 
@@ -29,7 +31,7 @@
 ### Response
 ```json
 {
-    "token": 0.0 // ID of the player
+    "token": 0.0
 }
 ```
 
